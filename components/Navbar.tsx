@@ -6,6 +6,7 @@ import Link from "next/link";
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,9 +29,29 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleMobileMenuClose = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav className={`navbar ${isScrolled ? "navbar-scrolled" : ""}`}>
       <div className="container nav-container">
+        <button
+          className="hamburger-menu"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span
+            className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
+          ></span>
+          <span
+            className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
+          ></span>
+          <span
+            className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
+          ></span>
+        </button>
+
         <Link href="/" className="logo">
           &lt;Dev /&gt;
         </Link>
@@ -51,6 +72,47 @@ export function Navbar() {
 
         <div className="nav-cta">
           <a href="#contact" className="btn btn-primary">
+            Get in Touch
+          </a>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div
+          className="mobile-menu-backdrop"
+          onClick={() => setIsMobileMenuOpen(false)}
+        ></div>
+      )}
+      <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
+        <div className="mobile-menu-content">
+          <Link
+            href="/"
+            className="mobile-menu-logo"
+            onClick={handleMobileMenuClose}
+          >
+            &lt;Dev /&gt;
+          </Link>
+          {["about", "skills", "projects", "experience", "contact"].map(
+            (item) => (
+              <Link
+                key={item}
+                href={`#${item}`}
+                className={`mobile-nav-link ${
+                  activeSection === item ? "active" : ""
+                }`}
+                onClick={handleMobileMenuClose}
+              >
+                {item.charAt(0).toUpperCase() + item.slice(1)}
+              </Link>
+            )
+          )}
+          <a
+            href="#contact"
+            className="btn btn-primary"
+            style={{ marginTop: "16px", width: "100%", textAlign: "center" }}
+            onClick={handleMobileMenuClose}
+          >
             Get in Touch
           </a>
         </div>
