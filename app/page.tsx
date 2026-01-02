@@ -298,7 +298,7 @@ export default function Home() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2024 Your Name. All rights reserved.</p>
+            <p>&copy; 2026 Chanchlesh Nagre. All rights reserved.</p>
             <div className="social-links">
               {social.map((link, i) => (
                 <a
