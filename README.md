@@ -1,3 +1,7 @@
+#Modern animated portfolio showcasing 5+ years of full-stack development expertise
+
+Built with Next.js 16, React 19, and TypeScript featuring smooth animations, glassmorphism design, and real-time interactivity. Highlights enterprise-grade projects in microservices, cloud architecture, and healthcare technology.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
